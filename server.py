@@ -107,4 +107,4 @@ def capture():
     return jsonify({"status": "success"})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=TOKEN
+    app.run host='0.0.0.0', port=TOKEN
