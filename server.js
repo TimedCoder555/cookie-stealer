@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 
 // Your Discord Webhook URL
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1576100925183885395/1BSb5AqGSairin1gG3zfX1Rfks2jUO00uRnmy4MvIQIf9ywuwGntpFRYRjQ4FS4XOVAl";
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1576170466010464266/7QB8st24XuNRLNg49W4FQqqB9x-o02LrISZhwCZcRfj73HQRk8KFb0Iebs9pvx7wTTGn";
 
 app.use(express.json());
 app.use(express.static('public'));
